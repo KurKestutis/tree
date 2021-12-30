@@ -1,4 +1,7 @@
 const printTree = function (rowNumbers) {
+  if (typeof rowNumbers == "undefined") {
+    rowNumbers = 25;
+  }
   let spaceInRow = "";
   let asterisksInRow = "";
   for (let currentRow = 1; currentRow <= rowNumbers; currentRow++) {
@@ -17,3 +20,5 @@ const printTree = function (rowNumbers) {
 };
 
 printTree(8);
+
+printTree();
