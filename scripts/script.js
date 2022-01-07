@@ -17,7 +17,6 @@ const printTree = function (rowNumbers) {
       wholeTree += " *";
     }
 
-    console.log(`${spaceInRow} ${asterisksInRow}`);
     wholeTree += "\n";
     spaceInRow = "";
     asterisksInRow = "";
@@ -25,9 +24,21 @@ const printTree = function (rowNumbers) {
   return wholeTree;
 };
 
-printTree(8);
+let textFile = null;
+const makeTextFile = function (text) {
+  let data = new Blob([text], { type: "text/plain" });
 
-printTree();
+  // If we are replacing a previously generated file we need to
+  // manually revoke the object URL to avoid memory leaks.
+  if (textFile !== null) {
+    window.URL.revokeObjectURL(textFile);
+  }
+
+  textFile = window.URL.createObjectURL(data);
+
+  // returns a URL you can use as a href
+  return textFile;
+};
 
 document.getElementById("inputfile").addEventListener("change", function () {
   let fileReader = new FileReader();
@@ -39,3 +50,15 @@ document.getElementById("inputfile").addEventListener("change", function () {
 
   fileReader.readAsText(this.files[0]);
 });
+
+const create = document.getElementById("create");
+const textValue = "text";
+create.addEventListener(
+  "click",
+  function () {
+    const link = document.getElementById("downloadlink");
+    link.href = makeTextFile(textValue);
+    link.style.display = "block";
+  },
+  false
+);
