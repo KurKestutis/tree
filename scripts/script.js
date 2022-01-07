@@ -40,25 +40,50 @@ const makeTextFile = function (text) {
   return textFile;
 };
 
-document.getElementById("inputfile").addEventListener("change", function () {
-  let fileReader = new FileReader();
-  fileReader.onload = function () {
+let input = document.querySelector("input");
+let fileContent;
+
+input.addEventListener("change", () => {
+  let files = input.files;
+  if (files.length == 0) return;
+
+  /* If any further modifications have to be made on the
+	Extracted text. The text can be accessed using the
+	file variable. But since this is const, it is a read
+	only variable, hence immutable. To make any changes,
+	changing const to var, here and In the reader.onload
+	function would be advisible */
+
+  let file = files[0];
+
+  let reader = new FileReader();
+
+  reader.onload = (e) => {
+    const info = e.target.result;
+
+    // This is a regular expression to identify carriage Returns and line breaks
+
+    const lines = info.split(/\r\n|\n/);
+    fileContent = lines.join("\n");
+
     document.getElementById("output").textContent = printTree(
-      fileReader.result
+      Number(fileContent)
+    );
+
+    const create = document.getElementById("create");
+    const textValue = printTree(Number(fileContent));
+    create.addEventListener(
+      "click",
+      function () {
+        const link = document.getElementById("downloadlink");
+        link.href = makeTextFile(textValue);
+        link.style.display = "block";
+      },
+      false
     );
   };
 
-  fileReader.readAsText(this.files[0]);
-});
+  reader.onerror = (e) => alert(e.target.error.name);
 
-const create = document.getElementById("create");
-const textValue = "text";
-create.addEventListener(
-  "click",
-  function () {
-    const link = document.getElementById("downloadlink");
-    link.href = makeTextFile(textValue);
-    link.style.display = "block";
-  },
-  false
-);
+  reader.readAsText(file);
+});
