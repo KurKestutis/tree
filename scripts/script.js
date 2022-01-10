@@ -41,7 +41,6 @@ const makeTextFile = function (text) {
 };
 
 let input = document.querySelector("input");
-let fileContent;
 
 input.addEventListener("change", () => {
   let files = input.files;
@@ -55,20 +54,12 @@ input.addEventListener("change", () => {
 	function would be advisible */
 
   let file = files[0];
-
   let reader = new FileReader();
 
   reader.onload = (e) => {
-    const info = e.target.result;
+    const fileContent = Number(e.target.result);
 
-    // This is a regular expression to identify carriage Returns and line breaks
-
-    const lines = info.split(/\r\n|\n/);
-    fileContent = lines.join("\n");
-
-    document.getElementById("output").textContent = printTree(
-      Number(fileContent)
-    );
+    document.getElementById("output").textContent = printTree(fileContent);
 
     const create = document.getElementById("create");
     const textValue = printTree(Number(fileContent));
