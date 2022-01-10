@@ -1,3 +1,4 @@
-1. Write function that print tree.
-2. Take variable from .txt file and print tree to .txt file.
+DONE 1. Write function that print tree.
+DOEN 2. Take variable from .txt file and print tree to .txt file.
 3. Make UI.
+4. Add some validation for input file.
