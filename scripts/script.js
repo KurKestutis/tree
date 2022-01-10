@@ -77,6 +77,7 @@ input.addEventListener("change", () => {
       function () {
         const link = document.getElementById("downloadlink");
         link.href = makeTextFile(textValue);
+        link.download = "happy-holidays.txt";
         link.style.display = "block";
       },
       false
