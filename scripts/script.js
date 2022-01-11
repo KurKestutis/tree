@@ -58,21 +58,14 @@ input.addEventListener("change", () => {
 
   reader.onload = (e) => {
     const fileContent = Number(e.target.result);
+    const tree = printTree(Number(fileContent));
 
-    document.getElementById("output").textContent = printTree(fileContent);
+    document.getElementById("output").textContent = tree;
 
-    const create = document.getElementById("create");
-    const textValue = printTree(Number(fileContent));
-    create.addEventListener(
-      "click",
-      function () {
-        const link = document.getElementById("downloadlink");
-        link.href = makeTextFile(textValue);
-        link.download = "happy-holidays.txt";
-        link.style.display = "block";
-      },
-      false
-    );
+    const link = document.getElementById("downloadlink");
+    link.href = makeTextFile(tree);
+    link.download = "happy-holidays.txt";
+    link.style.display = "block";
   };
 
   reader.onerror = (e) => alert(e.target.error.name);
