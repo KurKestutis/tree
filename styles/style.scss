@@ -1,12 +1,17 @@
+$main-font-size: 22px;
+$button-font-size: 18px;
+$output-font-size: 16px;
+
 .body {
+  min-height: 100vh;
   background-color: bisque;
+  font-size: $main-font-size;
+  display: flex;
 }
 
 .main {
-  height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: auto;
 }
 
 .tree {
@@ -14,33 +19,36 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  &-input {
-    padding-left: 2rem;
-  }
 }
 
-.custom-file-input::-webkit-file-upload-button {
+.tree-input::-webkit-file-upload-button {
   visibility: hidden;
   width: 1px;
+  padding-left: 2rem;
 }
-.custom-file-input::before {
+.tree-input::before {
+  font-size: $button-font-size;
   content: "Select file";
   display: inline-block;
   background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
   border: 1px solid #999;
   border-radius: 3px;
-  padding: 5px;
+  padding: 3px 3px;
   outline: none;
   white-space: nowrap;
   -webkit-user-select: none;
   cursor: pointer;
   text-shadow: 1px 1px #fff;
-  font-weight: 600;
 }
-.custom-file-input:hover::before {
+
+.tree-input:hover::before {
   border-color: black;
 }
-.custom-file-input:active::before {
+
+.tree-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.output-text {
+  font-size: $output-font-size;
 }

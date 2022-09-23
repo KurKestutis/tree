@@ -1,18 +1,17 @@
 .body {
+  min-height: 100vh;
   background-color: bisque;
-}
-
-.main {
-  height: 100vh;
+  font-size: 22px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
 }
 
 .tree {
@@ -31,35 +30,36 @@
           align-items: center;
 }
 
-.tree-input {
+.tree-input::-webkit-file-upload-button {
+  visibility: hidden;
+  width: 1px;
   padding-left: 2rem;
 }
 
-.custom-file-input::-webkit-file-upload-button {
-  visibility: hidden;
-  width: 1px;
-}
-
-.custom-file-input::before {
+.tree-input::before {
+  font-size: 18px;
   content: "Select file";
   display: inline-block;
   background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
   border: 1px solid #999;
   border-radius: 3px;
-  padding: 5px;
+  padding: 3px 3px;
   outline: none;
   white-space: nowrap;
   -webkit-user-select: none;
   cursor: pointer;
   text-shadow: 1px 1px #fff;
-  font-weight: 600;
 }
 
-.custom-file-input:hover::before {
+.tree-input:hover::before {
   border-color: black;
 }
 
-.custom-file-input:active::before {
+.tree-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.output-text {
+  font-size: 16px;
 }
 /*# sourceMappingURL=style.css.map */
